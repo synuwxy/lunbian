@@ -29,7 +29,13 @@ lunbian/
 │   │   └── SKILL.md
 │   ├── infra-doc-owner/             # 文档层：基础设施文档owner
 │   │   └── SKILL.md
-│   └── ooda-coder/                  # 执行层：基于OODA-E循环的代码编写
+│   ├── ooda-coder/                  # 执行层：基于OODA-E循环的代码编写
+│   │   └── SKILL.md
+│   ├── reviewer/                    # 校验层：独立审查代码改动
+│   │   └── SKILL.md
+│   ├── architecture-guard/          # 校验层：架构约束的机械化检查
+│   │   └── SKILL.md
+│   └── consolidation/               # 进化层：沉淀分析
 │       └── SKILL.md
 │
 └── README.md
@@ -40,7 +46,7 @@ lunbian/
 | 文档 | 描述 |
 |------|------|
 | [AI编程方法论：骑士、缰绳和千里马.md](origin/AI编程方法论：骑士、缰绳和千里马.md) | 理论框架：骑士、缰绳、千里马三个角色，对齐、共演化、回合制等核心机制 |
-| [AI编程体系建设：工具体系.md](origin/AI编程体系建设：工具体系.md) | 工具体系设计：基础层、文档层、执行层、控制层、进化层五层架构 |
+| [AI编程体系建设：工具体系.md](origin/AI编程体系建设：工具体系.md) | 工具体系设计：基础层、文档层、执行层、校验层、进化层五层架构 |
 
 ### 技能说明
 
@@ -51,6 +57,9 @@ lunbian/
 | [business-doc-owner](skills/business-doc-owner/SKILL.md) | 文档层 | 业务级文档owner。负责业务目录的README、CONVENTIONS的建立和维护 |
 | [infra-doc-owner](skills/infra-doc-owner/SKILL.md) | 文档层 | 基础设施文档owner。负责基础设施目录的INDEX的建立和维护 |
 | [ooda-coder](skills/ooda-coder/SKILL.md) | 执行层 | 基于OODA-E循环的代码编写。在文档的约束下执行，规范大于自由，基建优先于手写 |
+| [reviewer](skills/reviewer/SKILL.md) | 校验层 | 独立审查代码改动。提供客观的质量评估，生成与评估必须分离 |
+| [architecture-guard](skills/architecture-guard/SKILL.md) | 校验层 | 架构约束的机械化检查。确保代码合入前符合架构规范 |
+| [consolidation](skills/consolidation/SKILL.md) | 进化层 | 沉淀分析。提取、分类、统计和总结执行日志的积累，输出结构化分析报告 |
 
 ### 核心思想
 
