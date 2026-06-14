@@ -44,6 +44,7 @@ description: "Use when the user wants to analyze accumulated execution logs and 
 - 分析范围：[执行日志文件列表]
 - 执行日志总数：[数量]
 - 问题总数：[数量]
+- 时间跨度：[最早日志时间 - 最近日志时间]
 
 ## 高频问题清单
 [每个问题包含：问题分类、出现次数、占比、典型表现、影响程度]
@@ -53,6 +54,11 @@ description: "Use when the user wants to analyze accumulated execution logs and 
 
 ## 根因分析
 [每个根因包含：根因名称、描述、影响范围、严重程度]
+
+## Skill使用分析
+- 使用skill的日志数量：[数量]
+- 未使用skill的日志数量：[数量]
+- 高频使用的skill：[列表]
 
 ## 能力边界画像
 - AI表现良好的领域：[列表]
@@ -72,8 +78,11 @@ description: "Use when the user wants to analyze accumulated execution logs and 
 
 ## 检查清单
 
-1. **读取执行日志目录** — 从项目级INDEX中获取执行日志存放位置
-2. **解析执行日志内容** — 读取所有执行日志文件，提取结构化信息
+1. **读取执行日志目录** — 从项目级INDEX中"AI执行记录"段落获取执行日志存放位置
+2. **解析执行日志内容** — 读取所有执行日志文件，提取结构化信息：
+   - 任务信息：时间戳、时间、用户输入、使用skill
+   - 执行过程：根据日志内容自行判断流程和卡点
+   - 卡点纪要：记录的问题
 3. **按分类统计频次** — 统计每个问题分类的出现次数
 4. **识别重复模式** — 识别重复出现的问题模式
 5. **分析根本原因** — 深入分析问题背后的根本原因
