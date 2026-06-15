@@ -36,9 +36,20 @@ Task tool (general-purpose):
 
     {用户的业务需求描述}
 
+    ## 临时文件
+
+    读取路径：{CONTEXT-BRIEF路径或内容}
+    写入路径：{CODE-PLAN写入路径}
+
+    如果CONTEXT-BRIEF提供的是文件路径，先读取。如果是内容，直接使用。
+    将OODA-CODE-PLAN写入写入路径。写入成功后，返回文件路径和简短摘要（执行计划概要、涉及的文件列表）。
+    如果写入失败，直接在返回中输出完整的OODA-CODE-PLAN内容。
+
     ## OODA-CONTEXT-BRIEF
 
-    {scout返回的完整快照，原样传递，不做任何修改}
+    {CONTEXT-BRIEF内容或路径}
+
+    如果提供的是文件路径，先读取文件获取完整内容。如果是完整内容，直接使用。
 
     ## 读取策略
 

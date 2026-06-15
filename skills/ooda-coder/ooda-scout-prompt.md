@@ -32,6 +32,13 @@ Task tool (general-purpose):
 
     {用户的业务需求描述}
 
+    ## 临时文件
+
+    写入路径：{CONTEXT-BRIEF写入路径}
+
+    将OODA-CONTEXT-BRIEF写入该文件。写入成功后，返回文件路径和简短摘要（3-5句话，概述业务背景、项目结构、规约路径）。
+    如果写入失败，直接在返回中输出完整的OODA-CONTEXT-BRIEF内容。
+
     ## Constraints
 
     - 只读取和输出，不修改任何文件

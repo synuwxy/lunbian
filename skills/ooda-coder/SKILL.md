@@ -63,25 +63,58 @@ digraph ooda {
 }
 ```
 
+## 临时文件管理
+
+主session负责临时文件的完整生命周期管理。
+
+**目录结构**：`.ooda-work/{sessionId}/`
+- sessionId：UTC时间戳格式（如`20260616093045`），每次执行唯一
+
+**主session职责**：
+1. 执行开始时：创建`.ooda-work/{sessionId}/`目录
+2. 调度subagent时：告知写入路径
+3. 正常完成时：删除`.ooda-work/{sessionId}/`目录
+4. 异常中断时：保留目录，方便回溯排查
+5. 下次启动时：扫描`.ooda-work/`，清理所有旧sessionId目录
+
+**降级策略**：
+subagent写入失败时，会在返回中输出完整内容。主session根据返回值判断传递方式：
+- 返回路径 → 下一个subagent通过文件读取
+- 返回完整内容 → 下一个subagent通过上下文传递
+
 ## 调度规则
 
 ### 第一步：调度 ooda-scout
 
-使用task工具，prompt模板见 `ooda-scout-prompt.md`。将用户的业务需求填入 `{用户的业务需求描述}`。
+使用task工具，prompt模板见 `ooda-scout-prompt.md`。填入：
+- `{用户的业务需求描述}`：用户的原始需求
+- `{CONTEXT-BRIEF写入路径}`：`.ooda-work/{sessionId}/context-brief.md`的绝对路径
 
-接收scout返回的OODA-CONTEXT-BRIEF后，向用户简要汇报侦察结果，然后进入第二步。
+接收scout返回后：
+- 返回路径+摘要：向用户汇报摘要，将路径记录用于传递给forger
+- 返回完整内容：向用户汇报内容摘要，将内容记录用于传递给forger（降级模式）
 
 ### 第二步：调度 ooda-forger
 
 使用task工具，prompt模板见 `ooda-forger-prompt.md`。填入：
 - `{用户的业务需求描述}`：用户的原始需求
-- `{scout返回的完整快照}`：原样传递，不做任何修改
+- `{CONTEXT-BRIEF内容或路径}`：
+  - scout返回了路径 → 告知"CONTEXT-BRIEF在文件 {路径} 中，请先读取"
+  - scout返回了完整内容 → 原样传递（降级模式）
+- `{CODE-PLAN写入路径}`：`.ooda-work/{sessionId}/code-plan.md`的绝对路径
 
-接收forger返回的OODA-CODE-PLAN后，进入第三步。
+接收forger返回后：
+- 返回路径+摘要：将路径记录用于传递给act
+- 返回完整内容：将内容记录用于传递给act（降级模式）
 
 ### 第三步：调度 ooda-act
 
-使用task工具，prompt模板见 `ooda-act-prompt.md`。将forger的完整代码计划填入 `{forger返回的完整代码计划}`。
+使用task工具，prompt模板见 `ooda-act-prompt.md`。填入：
+- `{CODE-PLAN内容或路径}`：
+  - forger返回了路径 → 告知"CODE-PLAN在文件 {路径} 中，请先读取"
+  - forger返回了完整内容 → 原样传递（降级模式）
+- `{规约路径列表}`：从scout的返回中提取规约路径（仅在自修复模式下使用）
+- `{项目结构概要}`：从scout的返回中提取项目结构（仅在自修复模式下使用）
 
 接收act的结果后，进入第四步。
 
@@ -128,6 +161,8 @@ digraph ooda {
 日志文件命名：`{UTC时间戳}-任务描述.md`（任务描述不超过10个字）
 
 日志文件夹不存在时，如果开发者明确要求或INDEX有明确指定，自动创建。
+
+执行日志完成后，清理`.ooda-work/{sessionId}/`临时目录。
 
 ## 错误恢复机制
 
