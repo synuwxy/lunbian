@@ -24,7 +24,7 @@ description: "Use when the user wants to create or update project-level document
 ## Success criteria
 
 - [ ] README准确描述项目背景、技术栈、依赖关系
-- [ ] INDEX完整列出模块目录、位置、职责
+- [ ] INDEX完整列出模块目录、位置、职责，并包含AI执行记录段落（路径配置或标注为不需要）
 - [ ] CONVENTIONS清晰定义命名规范、代码风格、禁止用法
 - [ ] 文档与代码现实匹配，无过时信息
 - [ ] 所有变更已得到开发者确认
@@ -54,9 +54,11 @@ description: "Use when the user wants to create or update project-level document
 请确认是否同意以上建议？
 ```
 
+提示：如果INDEX.md缺少"AI执行记录"段落，建议添加以配置执行日志存放路径（如`.ai-work-logs/`）。如果开发者明确表示不需要，在INDEX中记录"不需要"，后续不再询问。
+
 ## 检查清单
 
-1. **分析当前状态** — 检查现有文档和代码结构
+1. **分析当前状态** — 检查现有文档和代码结构，包括INDEX中是否已有AI执行记录段落或"不需要"的记录
 2. **提出变更建议** — 呈现建议并说明理由
 3. **等待开发者批准** — 在开发者确认前不得继续
 4. **实施变更** — 执行已批准的变更

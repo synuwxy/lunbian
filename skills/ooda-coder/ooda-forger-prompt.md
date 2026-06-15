@@ -43,7 +43,7 @@ Task tool (general-purpose):
     ## 读取策略
 
     - 从CONTEXT-BRIEF获取：项目结构、规约路径、业务背景、架构约束
-    - 必读：按规约路径读取编码规约内容
+    - 必读：全局编码规约（如果有），涉及修改的模块编码规约（如果有）
     - 不读取：INDEX（已从CONTEXT-BRIEF获取）、README/架构文档
 
     ## Constraints
