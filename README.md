@@ -35,6 +35,8 @@ lunbian/
 │   │   └── SKILL.md
 │   ├── architecture-guard/          # 校验层：架构约束的机械化检查
 │   │   └── SKILL.md
+│   ├── debugger/                    # 校验层：系统化问题诊断
+│   │   └── SKILL.md
 │   └── consolidation/               # 进化层：沉淀分析
 │       └── SKILL.md
 │
@@ -59,6 +61,7 @@ lunbian/
 | [ooda-coder](skills/ooda-coder/SKILL.md) | 执行层 | 基于OODA-E循环的代码编写。在文档的约束下执行，规范大于自由，基建优先于手写 |
 | [reviewer](skills/reviewer/SKILL.md) | 校验层 | 独立审查代码改动。提供客观的质量评估，生成与评估必须分离 |
 | [architecture-guard](skills/architecture-guard/SKILL.md) | 校验层 | 架构约束的机械化检查。确保代码合入前符合架构规范 |
+| [debugger](skills/debugger/SKILL.md) | 校验层 | 系统化问题诊断。先定位根因再提出修复方案，诊断与修复分离 |
 | [consolidation](skills/consolidation/SKILL.md) | 进化层 | 沉淀分析。提取、分类、统计和总结执行日志的积累，输出结构化分析报告 |
 
 ### 核心思想
