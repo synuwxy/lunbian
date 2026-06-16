@@ -34,6 +34,7 @@ description: "Use when the user wants to create or update business-level documen
 - 业务层不需要INDEX，业务文件按业务逻辑组织，直观易找
 - 业务文档必须与代码中的实际业务逻辑一致
 - 如果无法确定某个编码规约是否应该记录，询问开发者
+- 需要开发者决策时，必须提供结构化选项：至少1个选项，用（推荐）标注推荐项，可加"其他：请说明"。不得只抛出问题
 
 ## 输出格式
 

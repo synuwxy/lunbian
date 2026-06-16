@@ -34,6 +34,7 @@ description: "Use when the user wants to create or update infrastructure documen
 - 函数签名INDEX是基础设施层的核心资产，必须与代码中的实际函数签名保持同步
 - INDEX设计为树状结构：全局INDEX → 模块INDEX
 - 如果无法确定某个函数是否应该记录，询问开发者
+- 需要开发者决策时，必须提供结构化选项：至少1个选项，用（推荐）标注推荐项，可加"其他：请说明"。不得只抛出问题
 
 ## 输出格式
 

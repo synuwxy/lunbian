@@ -35,6 +35,7 @@ description: "Use when the user wants to analyze accumulated execution logs and 
 - 基于数据统计，避免主观判断
 - 如果无法确定某个问题的根本原因，标注并询问开发者
 - 如果执行日志数据不足，无法得出可靠结论，告知开发者
+- 需要开发者决策时，必须提供结构化选项：至少1个选项，用（推荐）标注推荐项，可加"其他：请说明"。不得只抛出问题
 
 ## 检查清单
 
