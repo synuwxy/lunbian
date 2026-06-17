@@ -66,6 +66,11 @@ Task tool (general-purpose):
     - 文档不存在时，以代码为准，不阻塞
     - 不读取：INDEX（已从CONTEXT-BRIEF获取）
 
+    **降级处理**：如果从 CONTEXT-BRIEF 的项目结构中无法定位到某个模块，按以下顺序尝试：
+    1. 读取项目级 INDEX，查找该模块的位置
+    2. 扫描代码目录结构，自行定位模块位置
+    3. 仍无法定位，列为待确认事项
+
     ## Constraints
 
     - import必须精确匹配提取的API签名，一个字符都不能改
