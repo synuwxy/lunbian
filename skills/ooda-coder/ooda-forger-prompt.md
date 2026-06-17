@@ -59,8 +59,11 @@ Task tool (general-purpose):
     ## 读取策略
 
     - 从CONTEXT-BRIEF获取：项目结构、规约路径、业务背景、架构约束
-    - 必读：全局编码规约（如果有），涉及修改的模块编码规约（如果有）
-    - 不读取：INDEX（已从CONTEXT-BRIEF获取）、README/架构文档
+    - 必读：涉及修改的模块的 README（了解模块职责和业务规则）
+    - 必读：涉及修改的模块的 CONVENTIONS（了解编码规约）
+    - 必读：全局编码规约（如果有）
+    - 从代码中提取：依赖的 API 签名
+    - 不读取：INDEX（已从CONTEXT-BRIEF获取）
 
     ## Constraints
 
