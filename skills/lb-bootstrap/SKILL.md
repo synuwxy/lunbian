@@ -1,9 +1,9 @@
 ---
-name: lunbian-bootstrap
+name: lb-bootstrap
 description: "Use when the user starts a new project or takes over an existing project and needs to set up the documentation framework."
 ---
 
-# lunbian-bootstrap
+# lb-bootstrap
 
 项目初始化专家。帮助用户快速搭建文档框架，为后续的AI编程奠定基础。
 
@@ -89,13 +89,17 @@ description: "Use when the user starts a new project or takes over an existing p
 - 如果开发者拒绝创建某个文档，不要坚持，询问原因并调整建议
 - 如果发现项目已有文档但质量不高，不要自行修改，列出问题并询问开发者
 
+## 后续维护
+
+初始化完成后，文档的持续维护由 `lb-doc-owner` 负责。
+
 ---
 
 系统强制设定：当用户触发初始化指令时，先回复激活确认，再开始执行。
 
 激活确认格式：
 ```
-✅ lunbian-bootstrap 已激活。
+✅ lb-bootstrap 已激活。
 流程：确定场景 → 了解项目/分析项目 → 创建文档 → 输出完成
 正在执行：询问用户选择场景。
 ```

@@ -21,24 +21,47 @@ lunbian/
 │   └── AI编程体系建设：工具体系.md          # 工具体系设计
 │
 ├── skills/                          # 技能实现
-│   ├── lunbian-bootstrap/           # 基础层：项目初始化
+│   ├── lb-bootstrap/                # 基础层：项目初始化
 │   │   └── SKILL.md
-│   ├── product-doc-owner/           # 文档层：项目级文档owner
+│   ├── lb-doc-owner/                # 文档层：统一文档维护
+│   │   ├── SKILL.md
+│   │   ├── lb-doc-owner-business-prompt.md
+│   │   ├── lb-doc-owner-infra-prompt.md
+│   │   └── lb-doc-owner-log-template.md
+│   ├── product-doc-owner/           # 文档层：项目级文档owner（待废弃）
 │   │   └── SKILL.md
-│   ├── business-doc-owner/          # 文档层：业务级文档owner
+│   ├── business-doc-owner/          # 文档层：业务级文档owner（待废弃）
 │   │   └── SKILL.md
-│   ├── infra-doc-owner/             # 文档层：基础设施文档owner
+│   ├── infra-doc-owner/             # 文档层：基础设施文档owner（待废弃）
 │   │   └── SKILL.md
 │   ├── ooda-coder/                  # 执行层：基于OODA-E循环的代码编写
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   ├── ooda-scout-prompt.md
+│   │   ├── ooda-forger-prompt.md
+│   │   ├── ooda-act-prompt.md
+│   │   ├── ooda-eval-prompt.md
+│   │   └── ooda-coder-log-template.md
 │   ├── reviewer/                    # 校验层：独立审查代码改动
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── reviewer-log-template.md
 │   ├── architecture-guard/          # 校验层：架构约束的机械化检查
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── architecture-guard-log-template.md
 │   ├── debugger/                    # 校验层：系统化问题诊断
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── debugger-log-template.md
 │   └── consolidation/               # 进化层：沉淀分析
-│       └── SKILL.md
+│       ├── SKILL.md
+│       ├── consolidation-log-template.md
+│       ├── consolidation-ooda-prompt.md
+│       ├── consolidation-doc-debug-prompt.md
+│       ├── consolidation-review-prompt.md
+│       └── categories/
+│           ├── doc-quality.md
+│           ├── skill-design.md
+│           ├── capability-limits.md
+│           ├── user-input.md
+│           └── execution-deviation.md
 │
 └── README.md
 ```
@@ -54,15 +77,16 @@ lunbian/
 
 | 技能 | 层级 | 描述 |
 |------|------|------|
-| [lunbian-bootstrap](skills/lunbian-bootstrap/SKILL.md) | 基础层 | 项目初始化。帮助用户快速搭建文档框架，支持新项目和已有项目两种场景 |
-| [product-doc-owner](skills/product-doc-owner/SKILL.md) | 文档层 | 项目级文档owner。负责项目根目录的README、INDEX、CONVENTIONS的建立和维护 |
-| [business-doc-owner](skills/business-doc-owner/SKILL.md) | 文档层 | 业务级文档owner。负责业务目录的README、CONVENTIONS的建立和维护 |
-| [infra-doc-owner](skills/infra-doc-owner/SKILL.md) | 文档层 | 基础设施文档owner。负责基础设施目录的INDEX的建立和维护 |
+| [lb-bootstrap](skills/lb-bootstrap/SKILL.md) | 基础层 | 项目初始化。帮助用户快速搭建文档框架，支持新项目和已有项目两种场景 |
+| [lb-doc-owner](skills/lb-doc-owner/SKILL.md) | 文档层 | 统一文档维护。通过并行子代理分别维护业务层和基础设施层文档，协调者负责边界管控和项目级文档维护 |
+| [product-doc-owner](skills/product-doc-owner/SKILL.md) | 文档层 | 项目级文档owner（待废弃，由 lb-doc-owner 替代） |
+| [business-doc-owner](skills/business-doc-owner/SKILL.md) | 文档层 | 业务级文档owner（待废弃，由 lb-doc-owner 替代） |
+| [infra-doc-owner](skills/infra-doc-owner/SKILL.md) | 文档层 | 基础设施文档owner（待废弃，由 lb-doc-owner 替代） |
 | [ooda-coder](skills/ooda-coder/SKILL.md) | 执行层 | 基于OODA-E循环的代码编写。在文档的约束下执行，规范大于自由，基建优先于手写 |
 | [reviewer](skills/reviewer/SKILL.md) | 校验层 | 独立审查代码改动。提供客观的质量评估，生成与评估必须分离 |
 | [architecture-guard](skills/architecture-guard/SKILL.md) | 校验层 | 架构约束的机械化检查。确保代码合入前符合架构规范 |
 | [debugger](skills/debugger/SKILL.md) | 校验层 | 系统化问题诊断。先定位根因再提出修复方案，诊断与修复分离 |
-| [consolidation](skills/consolidation/SKILL.md) | 进化层 | 沉淀分析。提取、分类、统计和总结执行日志的积累，输出结构化分析报告 |
+| [consolidation](skills/consolidation/SKILL.md) | 进化层 | 沉淀分析。分析执行日志积累，识别文档框架缺陷，为开发者提供决策依据 |
 
 ### 核心思想
 

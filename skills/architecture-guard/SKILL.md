@@ -102,6 +102,34 @@ description: "Use when the user wants to check if code changes comply with archi
 - 如果检查规则与代码实际情况冲突，列出冲突并询问开发者
 - 如果开发者对检查结论有异议，不要坚持，提供依据并让开发者决策
 
+## 执行日志
+
+检查完成后生成执行日志。
+
+**日志路径**：读取项目级 INDEX 中"AI执行记录"段落的路径配置：
+- 有配置：自动写入，不询问
+- 无配置：询问开发者是否保存
+
+**日志目录结构**：
+
+```
+{日志目录}/{UTC紧凑时间戳}-架构检查/
+├── guard-report.md        # 检查报告
+└── execution-log.md       # 执行日志汇总
+```
+
+**记录原则**：发现违规时详细记录各维度检查结果和违规项；全部通过时简略记录总体结论即可。
+
+**日志模板**：参见 `architecture-guard-log-template.md`。
+
+**时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
+
+**日志目录命名**：`{UTC紧凑时间戳}-架构检查`
+
+日志目录不存在时，如果开发者明确要求或 INDEX 有明确指定，自动创建。
+
+这些日志将为 consolidation 提供数据来源，帮助识别高频架构违规问题。
+
 ---
 
 系统强制设定：当用户触发架构检查指令时，先回复激活确认，再开始执行。
@@ -109,6 +137,6 @@ description: "Use when the user wants to check if code changes comply with archi
 激活确认格式：
 ```
 ✅ architecture-guard 已激活。
-流程：读取约束 → 解析变更 → 执行检查 → 输出报告
+流程：读取约束 → 解析变更 → 执行检查 → 输出报告 → 执行日志
 正在执行：从项目文档中读取架构约束。
 ```
