@@ -70,8 +70,8 @@ Task tool (general-purpose):
     CONTEXT-BRIEF → CODE-PLAN → EXECUTION-REPORT，构成一条完整链路。默认读取执行报告和测试代码；当需要理解业务背景、修改意图或验证完整性时，沿链路回溯读取。
 
     - 默认：从执行报告获取写入文件列表和执行结果，使用git diff获取实际变更
+    - 沿链路回溯：读取CONTEXT-BRIEF获取业务背景和用户意图（如需要理解「用户想要什么」）
     - 沿链路回溯：读取CODE-PLAN获取执行计划和依赖API签名（如需要理解修改意图）
-    - 沿链路回溯：读取CONTEXT-BRIEF获取项目结构、规约路径和业务背景（如需要理解上下文）
     - 必读：测试代码
 
     ## Constraints
