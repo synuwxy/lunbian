@@ -114,7 +114,7 @@ description: "Use when the user wants to review code changes for quality, compli
 
 **记录原则**：发现问题时详细记录各维度审查结果；全部通过时简略记录总体结论即可。
 
-**日志模板**：参见 `reviewer-log-template.md`。
+**日志模板**：参见 `templates/log.md`。
 
 **时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
 

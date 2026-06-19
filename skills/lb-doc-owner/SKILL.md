@@ -1,16 +1,19 @@
 ---
 name: lb-doc-owner
-description: "Use when the user wants to create or update documentation (README, INDEX, CONVENTIONS) across project, business, and infrastructure layers. Consolidates doc maintenance into a single skill with parallel subagents."
+description: "Use when the user wants to create or update documentation (README, INDEX, CONVENTIONS) across project, business, and infrastructure layers. Handles both initialization (when no documents exist) and maintenance (when documents exist)."
 ---
 
 # lb-doc-owner
 
-统一文档维护技能。通过并行子代理分别维护业务层和基础设施层文档，协调者负责边界管控、项目级文档维护和执行日志记录。
+统一文档维护技能。通过并行子代理分别维护业务层和基础设施层文档，协调者负责边界管控、项目级文档维护和执行日志记录。当项目文档不存在时，自动调度初始化子代理完成文档框架搭建。
 
-**子代理 prompt 模板**：
-- `lb-doc-owner-business-prompt.md` — 业务层子代理
-- `lb-doc-owner-infra-prompt.md` — 基础设施层子代理
-- `lb-doc-owner-log-template.md` — 执行日志模板
+**子代理定义**：
+- `subagents/business.md` — 业务层子代理
+- `subagents/infra.md` — 基础设施层子代理
+- `subagents/bootstrap.md` — 初始化子代理（INDEX 不存在时触发）
+
+**模板**：
+- `templates/log.md` — 执行日志模板
 
 ## Role
 
@@ -102,7 +105,7 @@ digraph lb_doc_owner {
 
     start [label="用户指令" shape=doublecircle];
     detect [label="阶段1：INDEX 探测"];
-    ask_init [label="询问开发者：初始化/跳过/bootstrap" style=dashed];
+    bootstrap [label="阶段1.5：调度初始化子代理（lb-bootstrap）"];
     parse [label="阶段2：边界解析与任务构建"];
     dispatch [label="阶段3：并行调度子代理"];
     merge [label="阶段4：变更汇总"];
@@ -113,9 +116,8 @@ digraph lb_doc_owner {
 
     start -> detect;
     detect -> parse [label="INDEX 存在"];
-    detect -> ask_init [label="INDEX 不存在" style=dashed];
-    ask_init -> parse [label="开发者确认初始化"];
-    ask_init -> report [label="开发者选择跳过"];
+    detect -> bootstrap [label="INDEX 不存在"];
+    bootstrap -> report [label="初始化完成"];
     parse -> dispatch;
     dispatch -> merge;
     merge -> project;
@@ -131,9 +133,22 @@ digraph lb_doc_owner {
 
 **INDEX 存在**：进入阶段2。
 
-**INDEX 不存在**：向开发者呈现以下选项：
-- 选项 A（推荐）：扫描项目结构，生成分析报告，经开发者确认后创建项目级 INDEX
-- 选项 B：跳过，仅维护已存在的文档
+**INDEX 不存在**：进入阶段1.5，调度初始化子代理。
+
+### 阶段1.5：调度初始化子代理
+
+当 INDEX 不存在时，协调者调度初始化子代理完成文档框架搭建。
+
+**调度方式**：使用 task 工具，`subagent_type` 为 `general`。
+
+prompt 模板见 `subagents/bootstrap.md`。填入：
+- `{项目根目录路径}`：项目的根目录绝对路径
+- `{开发者本次指令}`：用户的原始输入（如有）
+
+**后续处理**：
+- 初始化子代理完成后，协调者接收其返回，直接进入阶段7（输出完成报告）
+- 初始化子代理产出的文档即为本次执行的最终产出，不再进入维护流程
+- 如后续需要维护文档，开发者再次触发 lb-doc-owner 即可（此时 INDEX 已存在，进入阶段2）
 
 ### 阶段2：边界解析与任务构建
 
@@ -194,14 +209,14 @@ digraph lb_doc_owner {
 
 #### 调度业务层子代理
 
-prompt 模板见 `lb-doc-owner-business-prompt.md`。填入：
+prompt 模板见 `subagents/business.md`。填入：
 - `{管辖模块清单}`：协调者从 INDEX 中提取的业务层模块列表
 - `{行为准则}`：上述行为准则
 - `{开发者本次指令}`：用户的原始输入
 
 #### 调度基础设施层子代理
 
-prompt 模板见 `lb-doc-owner-infra-prompt.md`。填入：
+prompt 模板见 `subagents/infra.md`。填入：
 - `{管辖模块清单}`：协调者从 INDEX 中提取的基础设施层模块列表
 - `{行为准则}`：上述行为准则
 - `{开发者本次指令}`：用户的原始输入
@@ -273,7 +288,7 @@ prompt 模板见 `lb-doc-owner-infra-prompt.md`。填入：
 └── execution-log.md       # 执行日志汇总
 ```
 
-**日志模板**：参见 `lb-doc-owner-log-template.md`。
+**日志模板**：参见 `templates/log.md`。
 
 **时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
 
@@ -313,7 +328,7 @@ prompt 模板见 `lb-doc-owner-infra-prompt.md`。填入：
 激活确认格式：
 ```
 ✅ lb-doc-owner 已激活。
-流程：INDEX探测 → 边界解析 → 并行子代理 → 变更汇总 → 项目级文档建议 → 执行日志
+流程：INDEX探测 → [初始化/边界解析] → 并行子代理 → 变更汇总 → 项目级文档建议 → 执行日志
 正在执行：读取项目级 INDEX。
 ```
 

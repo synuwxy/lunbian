@@ -147,7 +147,7 @@ consolidation 应评估各领域的成熟度，帮助开发者决定哪些领域
 
 仅当存在 ooda-coder 日志时调度。
 
-prompt 模板见 `consolidation-ooda-prompt.md`。填入：
+prompt 模板见 `subagents/ooda.md`。填入：
 - `{日志目录列表}`：ooda-coder 的日志目录列表
 - `{分类文档路径}`：`categories/` 目录下所有分类文档的路径
 
@@ -155,7 +155,7 @@ prompt 模板见 `consolidation-ooda-prompt.md`。填入：
 
 仅当存在 lb-doc-owner 或 debugger 日志时调度。
 
-prompt 模板见 `consolidation-doc-debug-prompt.md`。填入：
+prompt 模板见 `subagents/doc-debug.md`。填入：
 - `{日志目录列表}`：lb-doc-owner 和 debugger 的日志目录列表
 - `{分类文档路径}`：`categories/` 目录下所有分类文档的路径
 
@@ -163,7 +163,7 @@ prompt 模板见 `consolidation-doc-debug-prompt.md`。填入：
 
 仅当存在 reviewer 或 architecture-guard 日志时调度。
 
-prompt 模板见 `consolidation-review-prompt.md`。填入：
+prompt 模板见 `subagents/review.md`。填入：
 - `{日志目录列表}`：reviewer 和 architecture-guard 的日志目录列表
 - `{分类文档路径}`：`categories/` 目录下所有分类文档的路径
 
