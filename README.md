@@ -21,6 +21,8 @@ lunbian/
 │   └── AI编程体系建设：工具体系.md          # 工具体系设计
 │
 ├── skills/                          # 技能实现
+│   ├── lb-master/                   # 编排层：统一入口，调度所有 skill
+│   │   └── SKILL.md
 │   ├── lb-doc-owner/                # 文档层：统一文档维护（含初始化）
 │   │   ├── SKILL.md
 │   │   ├── subagents/
@@ -86,6 +88,7 @@ lunbian/
 
 | 技能 | 层级 | 描述 |
 |------|------|------|
+| [lb-master](skills/lb-master/SKILL.md) | 编排层 | 统一入口。感知项目状态、解析用户意图、路由到合适的 skill、汇总执行结果 |
 | [lb-doc-owner](skills/lb-doc-owner/SKILL.md) | 文档层 | 统一文档维护。通过并行子代理分别维护业务层和基础设施层文档，协调者负责边界管控和项目级文档维护；当项目文档不存在时，自动调度初始化子代理完成框架搭建 |
 | [ooda-coder](skills/ooda-coder/SKILL.md) | 执行层 | 基于OODA-E循环的代码编写。在文档的约束下执行，规范大于自由，基建优先于手写 |
 | [reviewer](skills/reviewer/SKILL.md) | 校验层 | 独立审查代码改动。提供客观的质量评估，生成与评估必须分离 |
