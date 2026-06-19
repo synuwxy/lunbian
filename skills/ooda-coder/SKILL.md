@@ -107,7 +107,7 @@ digraph ooda {
 
 ### 第一步：调度 ooda-scout
 
-使用task工具，prompt模板见 `ooda-scout-prompt.md`。填入：
+使用task工具，prompt模板见 `subagents/scout.md`。填入：
 - `{用户的业务需求描述}`：用户的原始需求
 - `{CONTEXT-BRIEF写入路径}`：`.ooda-work/{sessionId}/context-brief.md`的绝对路径
 - `{行为准则}`：上述行为准则
@@ -118,7 +118,7 @@ digraph ooda {
 
 ### 第二步：调度 ooda-forger
 
-使用task工具，prompt模板见 `ooda-forger-prompt.md`。填入：
+使用task工具，prompt模板见 `subagents/forger.md`。填入：
 - `{用户的业务需求描述}`：用户的原始需求
 - `{CONTEXT-BRIEF内容或路径}`：
   - scout返回了路径 → 告知"CONTEXT-BRIEF在文件 {路径} 中，请先读取"
@@ -132,7 +132,7 @@ digraph ooda {
 
 ### 第三步：调度 ooda-act
 
-使用task工具，prompt模板见 `ooda-act-prompt.md`。填入：
+使用task工具，prompt模板见 `subagents/act.md`。填入：
 - `{CODE-PLAN内容或路径}`：
   - forger返回了路径 → 告知"CODE-PLAN在文件 {路径} 中，请先读取"
   - forger返回了完整内容 → 原样传递（降级模式）
@@ -146,7 +146,7 @@ digraph ooda {
 
 ### 第四步：调度 ooda-eval
 
-使用task工具，prompt模板见 `ooda-eval-prompt.md`。填入：
+使用task工具，prompt模板见 `subagents/eval.md`。填入：
 - `{EXECUTION-REPORT内容或路径}`：
   - act返回了路径 → 告知"执行报告在文件 {路径} 中，请先读取"
   - act返回了完整内容 → 原样传递（降级模式）
@@ -185,7 +185,7 @@ digraph ooda {
 └── execution-log.md       # 执行日志汇总
 ```
 
-**日志模板**：参见 `ooda-coder-log-template.md`。
+**日志模板**：参见 `templates/log.md`。
 
 **时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
 

@@ -120,7 +120,7 @@ description: "Use when the user wants to check if code changes comply with archi
 
 **记录原则**：发现违规时详细记录各维度检查结果和违规项；全部通过时简略记录总体结论即可。
 
-**日志模板**：参见 `architecture-guard-log-template.md`。
+**日志模板**：参见 `templates/log.md`。
 
 **时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
 

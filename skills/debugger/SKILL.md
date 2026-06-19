@@ -314,7 +314,7 @@ description: "Use when the user encounters bugs, test failures, unexpected behav
 
 **调查过程记录**：调试过程中的每一步操作、读取的文件、发现的线索、排除的假设，都应详细记录到 `investigation.md`。回溯时可还原完整的排查路径。
 
-**日志模板**：参见 `debugger-log-template.md`。
+**日志模板**：参见 `templates/log.md`。
 
 **时间戳格式**：UTC 紧凑时间戳，格式为 `YYYYMMDDHHmmss`（如 `20260617093045`），每次执行唯一。
 
