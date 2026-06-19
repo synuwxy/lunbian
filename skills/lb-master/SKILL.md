@@ -1,11 +1,25 @@
 ---
 name: lb-master
-description: "Use when the user wants to work on a project but is unsure which skill to use, or when a task requires coordinating multiple skills. The unified entry point for the lunbian system."
+description: "Use when the user wants to work on a project but is unsure which skill to use, or when a task requires coordinating multiple skills. The unified entry point for the lunbian system. Requires all lunbian skills to be installed."
 ---
 
 # lb-master
 
 统一编排入口。感知项目状态，理解用户意图，路由到合适的 skill，汇总执行结果。
+
+## 前置条件
+
+lb-master 必须运行在完整的 lunbian 体系下。以下 skill 必须已安装：
+
+| Skill | 必须/可选 | lb-master 路由场景 |
+|-------|----------|-------------------|
+| lb-doc-owner | 必须 | 文档初始化、文档维护 |
+| ooda-coder | 必须 | 代码编写 |
+| reviewer | 必须 | 代码审查 |
+| debugger | 必须 | 问题诊断 |
+| consolidation | 必须 | 共演化闭环分析 |
+
+**启动检查**：lb-master 启动时，检查上述 skill 是否存在。如有缺失，提示开发者安装后再使用。
 
 ## Role
 
